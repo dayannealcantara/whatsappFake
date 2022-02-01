@@ -21,3 +21,27 @@ body {
   flex-direction: column;
   border-right: 1px solid #ddd;
 }
+
+header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+.imgUsuario {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.header-btn {
+  display: flex;
+}
+.button {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
