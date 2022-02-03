@@ -45,3 +45,24 @@ header {
   justify-content: center;
   align-items: center;
 }
+.busca {
+  background-color: #f6f6f6;
+  border-bottom: 1px solid #eee;
+  padding: 5px 15px;
+}
+
+.buscaInput {
+  background-color: #fff;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+.buscaInput input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  margin-left: 10px;
+}
