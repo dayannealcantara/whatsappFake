@@ -16,7 +16,7 @@ function  App  ()  {
     {chatId:1, title:'Mariazinha', image:'https://image.flaticon.com/icons/png/512/163/163847.png'},
     {chatId:2, title:'Pedro', image:'https://cdn.pixabay.com/photo/2017/12/18/03/01/black-avatar-3025348_960_720.png'},
     {chatId:3, title:'Alana', image:'https://educa.ranzi.com.br/wp-content/uploads/2021/08/girl-2-2.png'},
-    {chatId:4, title:'José', image:'https://static.vecteezy.com/ti/vetor-gratis/p1/2002310-icone-personagem-isolado-de-avatar-negro-gr%C3%A1tis-vetor.jpg'}
+    {chatId:4, title:'Fulano de tal', image:'https://static.vecteezy.com/ti/vetor-gratis/p1/2002310-icone-personagem-isolado-de-avatar-negro-gr%C3%A1tis-vetor.jpg'}
   ]);
   const [activeChat, setActiveChat] =useState({});
 
