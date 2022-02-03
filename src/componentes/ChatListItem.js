@@ -1,18 +1,18 @@
 import React from "react";
 import "./chatlist.css";
-import ImagemUsuario from "../imagens/avatar.jpg";
+// import ImagemUsuario from "../imagens/avatar.jpg";
 
 
-const ChatListItem = ({onClick, active}) => {
+const ChatListItem = ({onClick, active, data}) => {
   return (
     <div 
     className={`chatListItem ${active?'active':''}`}
     onClick={onClick}
     >
-      <img className="chatListItem-img" img src={ImagemUsuario} alt="" />
+      <img className="chatListItem-img" img src={data.image} alt="" />
       <div className="chatListItem-lines">
       <div className="chatListItem-line">
-        <div className="chatListItem-name">Luiz</div>
+        <div className="chatListItem-name">{data.title}</div>
         <div className="chatListItem-hrs">22:40</div>
       </div>
       <div className="chatListItem-line">
