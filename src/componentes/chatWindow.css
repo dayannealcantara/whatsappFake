@@ -1,0 +1,83 @@
+.chatWindow {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.chatWindow-header {
+  height: 60px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chatWindow-headerInfo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chatWindow-headerImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.chatWindow-headerName {
+  font-size: 17px;
+  color: #000;
+}
+.chatWindow-headerButtons {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.chatWindow-headerBtn {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.chatWindow-main {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #e5ddd5;
+  background-size: cover;
+  background-position: center;
+  background-image: url("https://neuroup.com.br/wp-content/uploads/2020/04/fundo-whatsapp-2.png");
+}
+
+.chatWindow-footer {
+  height: 62px;
+  display: flex;
+  align-items: center;
+}
+
+.chatWindow-footerPre {
+  display: flex;
+  margin: 0 15px;
+}
+.chatWindow-footerInput {
+  flex: 1;
+}
+.chatWindow-footerPos {
+  display: flex;
+  padding: 0 15px;
+}
+
+.input-footer {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  background-color: #fff;
+  border-radius: 20%;
+  outline: 0;
+  font-size: 15px;
+  color: #4a4a4a;
+  padding-left: 15px;
+}

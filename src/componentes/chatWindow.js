@@ -3,6 +3,14 @@ import './chatWindow.css';
 import SearchIcon from "@material-ui/icons/Search";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
+import CloseIcon from"@material-ui/icons/Close";
+import SendIcon from "@material-ui/icons/Send";
+import MicIcon from "@material-ui/icons/Mic"
+
+
+
+
 
 const ChatWindow = () =>{
     return (
@@ -27,9 +35,21 @@ const ChatWindow = () =>{
             </div>
             <div className="chatWindow-main"></div>
             <div className="chatWindow-footer">
-            <div className="chatWindow-footerPre"></div>  
-            <div className="chatWindow-footerInput"></div> 
-            <div className="chatWindow-footerPos"></div>   
+            <div className="chatWindow-footerPre">
+           
+                <div className="chatWindow-headerBtn">
+                    <InsertEmoticonIcon style={{color:'#919191'}} />                    
+                </div>
+                
+            </div>  
+            <div className="chatWindow-footerInput">
+            <input className="input-footer" type="text" placeholder="Digite uma mensagem"/>    
+            </div> 
+            <div className="chatWindow-footerPos">
+            <div className="chatWindow-headerBtn">
+                    <SendIcon style={{color:'#919191'}} />                    
+                </div>
+            </div>   
             </div>          
         </div>
     );
