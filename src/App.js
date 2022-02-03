@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import ChatListItem from "./componentes/ChatListItem";
+import ChatInicial from "./componentes/chatInicial";
+import ChatWindow from "./componentes/chatWindow"
 
 import ImagemUsuario from "./imagens/usuario.png";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
@@ -10,7 +12,12 @@ import SearchIcon from "@material-ui/icons/Search";
 
 function  App  ()  {
 
-  const [chatList, setChatList] = useState([{}, {}, {}, {}, {}, {}, {}, {}]);
+  const [chatList, setChatList] = useState([
+    {chatId:1, title:'Fulano de tal', image:''},
+    {chatId:2, title:'Fulano de tal', image:''},
+    {chatId:3, title:'Fulano de tal', image:''}
+  ]);
+  const [activeChat, setActiveChat] =useState({});
 
   return (
     <div className="appWindow">
@@ -40,12 +47,22 @@ function  App  ()  {
         </div>
         <div className="chatList">
           {chatList.map((item, key) =>(
-            <ChatListItem key={key} />
+            <ChatListItem key={key} 
+            active={activeChat.chatId === chatList[key].chatId}
+            onClick={()=>setActiveChat(chatList[key])}
+            />
           ))}
          </div>
       </div>
 
-      <div className="contentArea"></div>
+      <div className="contentArea">
+        {activeChat.chatId !== undefined && 
+        <ChatWindow />        
+        } 
+        {activeChat.chatId === undefined && 
+         <ChatInicial />
+        }    
+      </div>
     </div>
   );
 };

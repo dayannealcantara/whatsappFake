@@ -3,9 +3,12 @@ import "./chatlist.css";
 import ImagemUsuario from "../imagens/avatar.jpg";
 
 
-const ChatListItem = () => {
+const ChatListItem = ({onClick, active}) => {
   return (
-    <div className="chatListItem">
+    <div 
+    className={`chatListItem ${active?'active':''}`}
+    onClick={onClick}
+    >
       <img className="chatListItem-img" img src={ImagemUsuario} alt="" />
       <div className="chatListItem-lines">
       <div className="chatListItem-line">
