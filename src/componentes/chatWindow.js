@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import EmojiPicker from "emoji-picker-react";
+import MessageItem from "./MessageItem"
 import "./chatWindow.css";
 import SearchIcon from "@material-ui/icons/Search";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
@@ -9,7 +10,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import SendIcon from "@material-ui/icons/Send";
 import MicIcon from "@material-ui/icons/Mic";
 
-const ChatWindow = () => {
+const ChatWindow = ({user}) => {
+
+  const body = useRef();
 
 let recognition = null;
 let SpeechRecognition =
@@ -21,7 +24,41 @@ if(SpeechRecognition !== undefined) {
 
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [text, setText] = useState("");
-  const [listening, setListening] = useState(false);
+  const [listening, setListening] = useState(false);  
+  const [list, setList] = useState([
+      {author:123, main: 'bla bla bla bla'},
+       {author:123, main: 'oieeee'},
+        {author:1234, main: 'ola ola ola'},
+        {author:123, main: 'bla bla bla bla'},
+        {author:123, main: 'oieeee'},
+         {author:1234, main: 'ola ola ola'},
+         {author:123, main: 'bla bla bla bla'},
+         {author:123, main: 'oieeee'},
+          {author:1234, main: 'ola ola ola'},
+          {author:123, main: 'bla bla bla bla'},
+          {author:123, main: 'oieeee'},
+           {author:1234, main: 'ola ola ola'},
+           {author:1234, main: 'ola ola ola'},
+           {author:1234, main: 'ola ola ola'},
+           {author:1234, main: 'ola ola ola'},
+           {author:1234, main: 'ola ola ola'},
+           {author:1234, main: 'ola ola ola'},
+           {author:1234, main: 'ola ola ola'},
+           {author:1234, main: 'ola ola ola'},
+           {author:1234, main: 'ola ola ola'}
+           
+      
+      ])
+
+      useEffect(()=>{
+        if(body.current.scrollHeight > body.current.offsetHeight) {
+          body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight
+
+        }
+
+
+      },[list]);
+    
 
   const handleEmojiClick = (e, emojiObject) => {
     setText(text + emojiObject.emoji);
@@ -73,7 +110,15 @@ if(SpeechRecognition !== undefined) {
           </div>
         </div>
       </div>
-      <div className="chatWindow-main"></div>
+      <div ref={body} className="chatWindow-main">
+          {list.map((item, key) => (
+              <MessageItem
+              key={key}
+              data={item}
+              user={user}   
+             />
+          ))}
+      </div>
       <div
         className="chatWindow-emoji"
         style={{ height: emojiOpen ? "200px" : "0px" }}

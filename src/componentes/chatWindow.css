@@ -43,6 +43,7 @@
   align-items: center;
   cursor: pointer;
   overflow: hidden;
+  transition: all ease 0.3s;
 }
 .chatWindow-main {
   flex: 1;
@@ -51,6 +52,15 @@
   background-size: cover;
   background-position: center;
   background-image: url("https://neuroup.com.br/wp-content/uploads/2020/04/fundo-whatsapp-2.png");
+  padding: 20px 30px;
+}
+.chatWindow-main::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.chatWindow-main::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .chatWindow-footer {
@@ -76,7 +86,7 @@
   height: 40px;
   border: 0;
   background-color: #fff;
-  border-radius: 20%;
+  border-radius: 5%;
   outline: 0;
   font-size: 15px;
   color: #4a4a4a;

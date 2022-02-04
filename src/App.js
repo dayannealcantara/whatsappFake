@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import ChatListItem from "./componentes/ChatListItem";
 import ChatInicial from "./componentes/chatInicial";
 import ChatWindow from "./componentes/chatWindow"
 
-import ImagemUsuario from "./imagens/usuario.png";
+// import ImagemUsuario from "./imagens/usuario.png";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -19,12 +19,15 @@ function  App  ()  {
     {chatId:4, title:'Fulano de tal', image:'https://static.vecteezy.com/ti/vetor-gratis/p1/2002310-icone-personagem-isolado-de-avatar-negro-gr%C3%A1tis-vetor.jpg'}
   ]);
   const [activeChat, setActiveChat] =useState({});
+  const [user, setUser] = useState({
+    id:1234, 
+    image:'https://educa.ranzi.com.br/wp-content/uploads/2021/08/girl-2-2.png', title:'Júlia'});
 
   return (
     <div className="appWindow">
       <div className="sidebar">
         <header>
-          <img src={ImagemUsuario} className="imgUsuario" />
+          <img src={user.image} className="imgUsuario" />
           <div className="header-btn">
             <div className="button">
               <DonutLargeIcon style={{ color: "#919191" }} />
@@ -60,7 +63,9 @@ function  App  ()  {
 
       <div className="contentArea">
         {activeChat.chatId !== undefined && 
-        <ChatWindow />        
+        <ChatWindow 
+        user={user}
+        />        
         } 
         {activeChat.chatId === undefined && 
          <ChatInicial />
