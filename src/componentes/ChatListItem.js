@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import "./chatlist.css";
 // import ImagemUsuario from "../imagens/avatar.jpg";
 
 
 const ChatListItem = ({onClick, active, data}) => {
+  const [time, setTime] = useState('');
+
+
+  useEffect(()=>{
+    if(data.lastMessageDate > 0) {
+      let d = new Date(data.lastMessageDate.seconds * 1000);
+      let hours = d.getHours();
+      let minutes = d.getMinutes();
+      hours = hours < 10 ? '0'+hours : hours;
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      setTime(`${hours}:${minutes}`);
+    }
+  }, [data])
   return (
     <div 
     className={`chatListItem ${active?'active':''}`}
@@ -13,11 +26,11 @@ const ChatListItem = ({onClick, active, data}) => {
       <div className="chatListItem-lines">
       <div className="chatListItem-line">
         <div className="chatListItem-name">{data.title}</div>
-        <div className="chatListItem-hrs">22:40</div>
+        <div className="chatListItem-hrs">{time}</div>
       </div>
       <div className="chatListItem-line">
         <div className="chatListItem-msg">
-          <p>E aí, falou com </p>
+          <p>{data.lastMessage}</p>
         </div>
       </div>
     </div>

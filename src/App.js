@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Api from"./api";
 import ChatListItem from "./componentes/ChatListItem";
@@ -12,8 +12,6 @@ import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchIcon from "@material-ui/icons/Search";
 
-
-
 const App= () => {
   const [chatList, setChatList] = useState([]);
   const [activeChat, setActiveChat] = useState({});
@@ -22,8 +20,14 @@ const App= () => {
     name: "Dayanne Alcantara",
     image: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-1/p200x200/250926823_4716617788390442_7568369757914123256_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeGj0jrxWaoHcjM7yFlJGW5GOidCAv1_Sdc6J0IC_X9J1_cPZd4gP_3XAtb_56mIBYVGAWob5qr7EX_1G5PwNX9z&_nc_ohc=dB4t2dqqkzAAX9ILdxR&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9eUNW0M0LU-fKgE5QtVhXBi8nMNORTObn5Aj1D3RJpzw&oe=620433B1'
   });
-
   const [showNovoChat, setShowNovoChat] = useState(false);
+
+  useEffect (()=> {
+    if(user !== null) {
+      let unsub = Api.onChatList(user.id, setChatList);
+      return unsub;
+    }
+  }, [user])
 
   const handleNovoChat = () => {
     setShowNovoChat(true);
@@ -88,7 +92,10 @@ const App= () => {
       </div>
 
       <div className="contentArea">
-        {activeChat.chatId !== undefined && <ChatWindow user={user} />}
+        {activeChat.chatId !== undefined && 
+        <ChatWindow
+        user={user}
+        data={activeChat} />}
         {activeChat.chatId === undefined && <ChatInicial />}
       </div>
     </div>

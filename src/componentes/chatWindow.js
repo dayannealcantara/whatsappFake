@@ -9,56 +9,36 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import CloseIcon from "@material-ui/icons/Close";
 import SendIcon from "@material-ui/icons/Send";
 import MicIcon from "@material-ui/icons/Mic";
+import Api from "../api";
 
-const ChatWindow = ({user}) => {
+const ChatWindow = ({user, data}) => {
 
-  const body = useRef();
+const body = useRef();
 
-let recognition = null;
-let SpeechRecognition =
+  let recognition = null;
+  let SpeechRecognition =
   window.SpeechRecognition || window.webKitSpeechRecognition;
-if(SpeechRecognition !== undefined) {
-  recognition = new SpeechRecognition();
+    if(SpeechRecognition !== undefined) {
+      recognition = new SpeechRecognition();
 }
 
 
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [text, setText] = useState("");
   const [listening, setListening] = useState(false);  
-  const [list, setList] = useState([
-      {author:123, main: 'bla bla bla bla'},
-       {author:123, main: 'oieeee'},
-        {author:1234, main: 'ola ola ola'},
-        {author:123, main: 'bla bla bla bla'},
-        {author:123, main: 'oieeee'},
-         {author:1234, main: 'ola ola ola'},
-         {author:123, main: 'bla bla bla bla'},
-         {author:123, main: 'oieeee'},
-          {author:1234, main: 'ola ola ola'},
-          {author:123, main: 'bla bla bla bla'},
-          {author:123, main: 'oieeee'},
-           {author:1234, main: 'ola ola ola'},
-           {author:1234, main: 'ola ola ola'},
-           {author:1234, main: 'ola ola ola'},
-           {author:1234, main: 'ola ola ola'},
-           {author:1234, main: 'ola ola ola'},
-           {author:1234, main: 'ola ola ola'},
-           {author:1234, main: 'ola ola ola'},
-           {author:1234, main: 'ola ola ola'},
-           {author:1234, main: 'ola ola ola'}
-           
-      
-      ])
+  const [list, setList] = useState([]);
 
-      useEffect(()=>{
-        if(body.current.scrollHeight > body.current.offsetHeight) {
-          body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight
+  useEffect(()=>{
+    setList([]);
+    let unsub = Api.onChatContent(data.chatId, setList);
+    return unsub;  
+  },[data.chatId]);
 
-        }
-
-
-      },[list]);
-    
+  useEffect(()=>{
+    if(body.current.scrollHeight > body.current.offsetHeight) {
+      body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight
+    }
+  },[list]);    
 
   const handleEmojiClick = (e, emojiObject) => {
     setText(text + emojiObject.emoji);
@@ -92,10 +72,8 @@ if(SpeechRecognition !== undefined) {
         <div className="chatWindow-headerInfo">
           <img
             className="chatWindow-headerImg"
-            src="https://image.flaticon.com/icons/png/512/163/163847.png"
-            alt=""
-          />
-          <div className="chatWindow-headerName">Mariazinha</div>
+            src={data.image} alt=""/>
+          <div className="chatWindow-headerName">{data.title}</div>
         </div>
 
         <div className="chatWindow-headerButtons">
