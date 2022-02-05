@@ -1,10 +1,9 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyDQ23Dm2eqV8foY5tqQcrIOdh6FK-mPlqc",
-    authDomain: "whatsappfake-c98cb.firebaseapp.com",
-    projectId: "whatsappfake-c98cb",
-    storageBucket: "whatsappfake-c98cb.appspot.com",
-    messagingSenderId: "130793222892",
-    appId: "1:130793222892:web:5d924929e3d5a94a06abc9"
+    apiKey: "AIzaSyBo1bMWhV1uEuDRz7WfuA1il6fxn7205Ww",
+    authDomain: "whatsappclone-8d3ee.firebaseapp.com",
+    projectId: "whatsappclone-8d3ee",
+    storageBucket: "whatsappclone-8d3ee.appspot.com",
+    messagingSenderId: "797832123152",
+    appId: "1:797832123152:web:5aa96e340fb5c9b0d4cb95"
   };
-
   export default firebaseConfig

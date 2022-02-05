@@ -4,12 +4,13 @@ import ChatListItem from "./componentes/ChatListItem";
 import ChatInicial from "./componentes/chatInicial";
 import ChatWindow from "./componentes/chatWindow";
 import NovoChat from "./componentes/novoChat";
+import TelaLogin from "./componentes/telaLogin";
 
-// import ImagemUsuario from "./imagens/usuario.png";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchIcon from "@material-ui/icons/Search";
+
 
 const App= () => {
   const [chatList, setChatList] = useState([
@@ -19,17 +20,27 @@ const App= () => {
     {chatId: 4, title: "Fulano de tal", image:"https://static.vecteezy.com/ti/vetor-gratis/p1/2002310-icone-personagem-isolado-de-avatar-negro-gr%C3%A1tis-vetor.jpg"},
   ]);
   const [activeChat, setActiveChat] = useState({});
-  const [user, setUser] = useState({
-    id: 1234,
-    image: "https://educa.ranzi.com.br/wp-content/uploads/2021/08/girl-2-2.png",
-    name: "Júlia",
-  });
+  const [user, setUser] = useState(null);
 
   const [showNovoChat, setShowNovoChat] = useState(false);
 
   const handleNovoChat = () => {
     setShowNovoChat(true);
   };
+  const handleLogin = async (u) => {
+    let newUser = {
+      id: u.uid,
+      name: u.displayName,
+      avatar: u.photoURL
+    }
+
+    setUser(newUser);
+  }
+
+
+  if(user === null) {
+    return(<TelaLogin onReceive={handleLogin}/>);
+  }
 
   return (
     <div className="appWindow">
