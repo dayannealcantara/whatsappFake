@@ -1,19 +1,26 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import "./novoChat.css"
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Api from "../api";
 
 const NovoChat = ({user, chatList, show, setShow}) => {
-const[list, setList] = useState([
-    {id:234, image: 'https://static.vecteezy.com/ti/vetor-gratis/p1/2275818-avatar-feminino-mulher-perfil-icone-para-rede-vetor.jpg',
-    name: 'Bruna'
-},
-{id:234, image: 'https://static.vecteezy.com/ti/vetor-gratis/p1/2275818-avatar-feminino-mulher-perfil-icone-para-rede-vetor.jpg',
-    name: 'Bruna'},
-{id:234, image: 'https://static.vecteezy.com/ti/vetor-gratis/p1/2275818-avatar-feminino-mulher-perfil-icone-para-rede-vetor.jpg',
-    name: 'Bruna'},
-{id:234, image: 'https://static.vecteezy.com/ti/vetor-gratis/p1/2275818-avatar-feminino-mulher-perfil-icone-para-rede-vetor.jpg',
-    name: 'Bruna'}
-]);
+const[list, setList] = useState([]);
+
+useEffect (() => {
+    const getList = async () => {
+        if(user !== null) {
+            let results = await Api.getContactlist(user.id);
+            setList(results);
+        }
+
+    }
+    getList ();
+}, [user]);
+
+const addNovoChat = async (user2) => {
+    await Api.addNovoChat(user, user2);
+
+}
 
 const handleClose = () => {
     setShow(false);
@@ -29,7 +36,7 @@ const handleClose = () => {
         </div>
           <div className="novoChat-listContato">
          {list.map((item, key)=> (
-             <div className="novoChat-item">
+             <div  onClick={()=>addNovoChat(item)} className="novoChat-item">
                  <img  className="novoChat-itemImage"src={item.image} alt=""/>
                  <div className="novoChat-itemName">{item.name}</div>
 

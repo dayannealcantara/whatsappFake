@@ -2,10 +2,11 @@ import React from 'react';
 import Api from "../api"
 import './telaLogin.css';
 
-const TelaLogin = () => {
+const TelaLogin = ({onReceive}) => {
  const handleLoginFacebook = async () =>{
      let result = await Api.fbPopup();
      if(result) {
+         onReceive(result.user)
      }else {
          alert("Erro!");
      }

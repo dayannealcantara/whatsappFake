@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import Api from"./api";
 import ChatListItem from "./componentes/ChatListItem";
 import ChatInicial from "./componentes/chatInicial";
 import ChatWindow from "./componentes/chatWindow";
@@ -12,15 +13,15 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchIcon from "@material-ui/icons/Search";
 
 
+
 const App= () => {
-  const [chatList, setChatList] = useState([
-    {chatId: 1, title: "Mariazinha",image: "https://image.flaticon.com/icons/png/512/163/163847.png"},
-    {chatId: 2, title: "Pedro", image:"https://cdn.pixabay.com/photo/2017/12/18/03/01/black-avatar-3025348_960_720.png"},
-    {chatId: 3, title: "Alana", image:"https://educa.ranzi.com.br/wp-content/uploads/2021/08/girl-2-2.png"},
-    {chatId: 4, title: "Fulano de tal", image:"https://static.vecteezy.com/ti/vetor-gratis/p1/2002310-icone-personagem-isolado-de-avatar-negro-gr%C3%A1tis-vetor.jpg"},
-  ]);
+  const [chatList, setChatList] = useState([]);
   const [activeChat, setActiveChat] = useState({});
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    id: '712GQ6EzOSV2SccktYYVvBIjnfg2',
+    name: "Dayanne Alcantara",
+    image: 'https://scontent.fjdo1-2.fna.fbcdn.net/v/t39.30808-1/p200x200/250926823_4716617788390442_7568369757914123256_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeGj0jrxWaoHcjM7yFlJGW5GOidCAv1_Sdc6J0IC_X9J1_cPZd4gP_3XAtb_56mIBYVGAWob5qr7EX_1G5PwNX9z&_nc_ohc=dB4t2dqqkzAAX9ILdxR&_nc_ht=scontent.fjdo1-2.fna&oh=00_AT9eUNW0M0LU-fKgE5QtVhXBi8nMNORTObn5Aj1D3RJpzw&oe=620433B1'
+  });
 
   const [showNovoChat, setShowNovoChat] = useState(false);
 
@@ -31,9 +32,9 @@ const App= () => {
     let newUser = {
       id: u.uid,
       name: u.displayName,
-      avatar: u.photoURL
-    }
-
+      image: u.photoURL
+    };
+    await Api.addUser(newUser);
     setUser(newUser);
   }
 

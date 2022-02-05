@@ -16,6 +16,34 @@ export default {
         let result = await firebaseApp.auth().signInWithPopup(provider);    
         return result;
       },
+      addUser:async (u) => {
+        await db.collection('Users').doc(u.id).set({
+          name: u.name,
+          image: u.image
+        }, {merge:true});
+      },
+      getContactlist: async(userId) => {
+        let list = [];
+        let results = await db.collection('Users').get();
+        results.forEach(result => {
+          let data = result.data()
+
+          if(result.id !== userId) {
+            list.push({
+              id: result.id,
+              name: data.name,
+              image: data.image
+            });
+          }
+
+        });
+
+        return list;
+
+      },
+      addNovoChat:async (user, user2) => {
+        
+      }
 }
 
  
