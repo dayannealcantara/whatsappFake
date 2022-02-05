@@ -42,8 +42,27 @@ export default {
 
       },
       addNovoChat:async (user, user2) => {
-        
-      }
+        let novoChat = await db.collection('chats').add({
+          messages:[],
+          Users:[user.id, user2.id]
+        });
+        db.collection('Users').doc(user.id).update({
+          chats: firebase.firestore.FieldValue.arrayUnion({
+            chatId: novoChat.id,
+            title:user2.name,
+            image:user2.image,
+            width:user2.id
+          })
+        });
+        db.collection('Users').doc(user2.id).update({
+          chats: firebase.firestore.FieldValue.arrayUnion({
+            chatId: novoChat.id,
+            title:user.name,
+            image:user.image,
+            width:user.id
+          })
+      });
+}
 }
 
  

@@ -20,6 +20,8 @@ useEffect (() => {
 const addNovoChat = async (user2) => {
     await Api.addNovoChat(user, user2);
 
+    handleClose();
+
 }
 
 const handleClose = () => {
