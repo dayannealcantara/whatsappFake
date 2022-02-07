@@ -41,9 +41,7 @@ const App= () => {
     await Api.addUser(newUser);
     setUser(newUser);
   }
-
-
-  if(user === null) {
+  if(!user){
     return(<TelaLogin onReceive={handleLogin}/>);
   }
 

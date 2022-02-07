@@ -22,7 +22,7 @@ const ChatListItem = ({onClick, active, data}) => {
     className={`chatListItem ${active?'active':''}`}
     onClick={onClick}
     >
-      <img className="chatListItem-img" img src={data.image} alt="" />
+      <img className="chatListItem-img" src={data.image} alt="" />
       <div className="chatListItem-lines">
       <div className="chatListItem-line">
         <div className="chatListItem-name">{data.title}</div>
